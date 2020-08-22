@@ -7,8 +7,6 @@ export interface CreateThumbnailProps {
 const CreateThumbnail: React.SFC<CreateThumbnailProps> = () => {
     const create = () => {
         parent.postMessage({pluginMessage: {type: 'finish'}}, '*');
-
-        // Make it self close somehow
     };
 
     return (
