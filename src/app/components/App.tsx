@@ -4,6 +4,7 @@ import '../styles/ui.css';
 import SelectFrames from './SelectFrames';
 import BgSelect from './BgSelect';
 import CreateThumbnail from './CreateThumbnail';
+import AddHand from './AddHand';
 
 export interface AppProps {}
 
@@ -17,7 +18,8 @@ const App: React.SFC<AppProps> = () => {
             <h1>Thumbnail Creator Step {step}</h1>
             {step == 1 && <SelectFrames nextStep={nextStep} />}
             {step == 2 && <BgSelect nextStep={nextStep} />}
-            {step == 3 && <CreateThumbnail />}
+            {step == 3 && <AddHand nextStep={nextStep} />}
+            {step == 4 && <CreateThumbnail />}
         </div>
     );
 };

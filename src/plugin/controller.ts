@@ -1,4 +1,5 @@
 figma.showUI(__html__);
+figma.ui.resize(350, 400);
 
 //declare variables to use later
 let data = figma.root;
@@ -8,6 +9,7 @@ let selection1: SceneNode;
 let selection2: SceneNode;
 
 let bgHex = '#CFE2E3';
+let customHand = '../assets/handz/Black/Basic/Black-in-Basic1.png`';
 
 // Calls to "parent.postMessage" from within the HTML page will trigger this
 // callback. The callback will be passed the "pluginMessage" property of the
@@ -24,10 +26,15 @@ figma.ui.onmessage = msg => {
         bgHex = msg.color;
     }
 
+    if (msg.type === 'addHand') {
+        customHand = msg.url;
+    }
+
     if (msg.type === 'finish') {
         createPageAndFrame();
         insertFirstMockup();
         insertSecondMockup();
+        figma.closePlugin();
     }
 };
 

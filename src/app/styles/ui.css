@@ -35,3 +35,22 @@ button:focus {
 input:focus {
     box-shadow: inset 0 0 0 2px #18a0fb;
 }
+
+img {
+    max-width: 300px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border: 1px solid #c4c4c4;
+    border-radius: 10px;
+}
+
+.picker {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+    padding-bottom: 10px;
+}
+
+select {
+}
