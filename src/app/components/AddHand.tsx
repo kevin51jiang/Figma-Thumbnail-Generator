@@ -34,7 +34,7 @@ const AddHand: React.SFC<AddHandProps> = (Props: AddHandProps) => {
 
     return (
         <>
-            <select onChange={e => handleColorChange(e)}>
+            <select className="select-menu" onChange={e => handleColorChange(e)}>
                 <option value="Black">Black</option>
                 <option value="Blue">Blue</option>
                 <option value="Brown">Brown</option>
@@ -45,12 +45,12 @@ const AddHand: React.SFC<AddHandProps> = (Props: AddHandProps) => {
                 <option value="White">White</option>
                 <option value="Yellow">Yellow</option>
             </select>
-            <select onChange={e => handleClothesChange(e)}>
+            <select className="select-menu" onChange={e => handleClothesChange(e)}>
                 <option value="Basic">Basic</option>
                 <option value="Jacket">Jacket</option>
                 <option value="Jumper">Jumper</option>
             </select>
-            <select onChange={e => handlePoseChange(e)}>
+            <select className="select-menu" onChange={e => handlePoseChange(e)}>
                 <option value="1">Fingers Crossed</option>
                 <option value="2">Number One</option>
                 <option value="3">High Five</option>

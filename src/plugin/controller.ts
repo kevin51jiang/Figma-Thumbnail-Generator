@@ -1,4 +1,5 @@
 figma.showUI(__html__);
+figma.ui.resize(350, 400);
 
 //declare variables to use later
 let data = figma.root;
