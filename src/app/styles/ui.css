@@ -35,3 +35,7 @@ button:focus {
 input:focus {
     box-shadow: inset 0 0 0 2px #18a0fb;
 }
+
+img {
+    max-width: 100px;
+}
