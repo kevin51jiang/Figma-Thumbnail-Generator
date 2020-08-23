@@ -13,7 +13,7 @@ By giving teams the ability to highlight artboards of their choice and showcase 
 
 Install the plugin [here](https://www.figma.com/community/plugin/879412500982971840/thumb---thumbnails-for-your-team).
 
-Created by: [Aaron Jiang](aaronjiang0.me), [Jayden Hsiao](jaydenhsiao.me), [Emily Louie](emily.louie.ca), [Kevin Jiang](kevinjiang.ca), and [Leon Han](https://leon-han19.github.io)
+Created by: [Aaron Jiang](https://aaronjiang0.me), [Jayden Hsiao](https://jaydenhsiao.me), [Emily Louie](https://emily.louie.ca), [Kevin Jiang](https://kevinjiang.ca), and [Leon Han](https://leon-han19.github.io)
 
 ## Quickstart
 * Clone the repo
