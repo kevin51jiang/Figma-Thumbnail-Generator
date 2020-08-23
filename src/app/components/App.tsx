@@ -6,6 +6,8 @@ import BgSelect from './BgSelect';
 import CreateThumbnail from './CreateThumbnail';
 import AddHand from './AddHand';
 
+import 'antd/dist/antd.css';
+
 export interface AppProps {}
 
 const App: React.SFC<AppProps> = () => {
