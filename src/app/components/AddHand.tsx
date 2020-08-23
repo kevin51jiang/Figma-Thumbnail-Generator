@@ -8,7 +8,17 @@ export interface AddHandProps {
     nextStep: () => void;
 }
 
-const colorOptions = ['Black', 'Blue', 'Brown', 'Dark-white', 'Green', 'Light-brown', 'Purple', 'White', 'Yellow'];
+const colorOptions = [
+    'Black',
+    'Blue',
+    'Brown',
+    ['Dark White', 'Dark-white'],
+    'Green',
+    ['Light Brown', 'Light-brown'],
+    'Purple',
+    'White',
+    'Yellow',
+];
 
 const clothesOptions = ['Basic', 'Jacket', 'Jumper'];
 
@@ -33,16 +43,27 @@ const AddHand: React.SFC<AddHandProps> = (Props: AddHandProps) => {
         <>
             {/* Color */}
             <Select value={color} style={{width: '10rem'}} onChange={val => setColor(val)} optionLabelProp="label">
-                {colorOptions.map(colorOpt => (
-                    <Option value={colorOpt} label={colorOpt} key={colorOpt}>
-                        <div style={{textAlign: 'left'}}>
-                            <span style={{width: '1rem', display: 'inline-block'}} role="img">
-                                {color === colorOpt ? '✓ ' : ' '}
-                            </span>
-                            {colorOpt}
-                        </div>
-                    </Option>
-                ))}
+                {colorOptions.map(colorOpt =>
+                    typeof colorOpt === 'string' ? (
+                        <Option value={colorOpt} label={colorOpt} key={`color-${colorOpt}`}>
+                            <div style={{textAlign: 'left'}}>
+                                <span style={{width: '1rem', display: 'inline-block'}} role="img">
+                                    {color === colorOpt ? '✓ ' : ' '}
+                                </span>
+                                {colorOpt}
+                            </div>
+                        </Option>
+                    ) : (
+                        <Option value={colorOpt[1]} label={colorOpt[0]} key={`color-${colorOpt[1]}`}>
+                            <div style={{textAlign: 'left'}}>
+                                <span style={{width: '1rem', display: 'inline-block'}} role="img">
+                                    {color === colorOpt[1] ? '✓ ' : ' '}
+                                </span>
+                                {colorOpt[0]}
+                            </div>
+                        </Option>
+                    )
+                )}
             </Select>
 
             {/* Clothes */}
