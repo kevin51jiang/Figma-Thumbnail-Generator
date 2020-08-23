@@ -34,10 +34,27 @@ const AddHand: React.SFC<AddHandProps> = (Props: AddHandProps) => {
         setPath(`https://emily.louie.ca/handz/${color}-in-${clothes}${pose}.png`);
     }, [color, clothes, pose]);
 
-    const onHandSelect = () => {
-        parent.postMessage({pluginMessage: {type: 'addHand', url: path}}, '*');
+    function sendData(data) {
+        parent.postMessage({pluginMessage: {type: 'addHand', image: data}}, '*');
         Props.nextStep();
-    };
+    }
+
+    function onHandSelect() {
+        // let path = "https://scripter.rsms.me/icon.png";
+        fetch(path)
+            .then(r => {
+                if ((r.status + '')[0] != '2') throw Error(`HTTP ${r.status} ${r.statusText}`);
+                return r.arrayBuffer();
+                //@ts-ignore
+            })
+            .then(a => sendData(new Uint8Array(a)), '*')
+            .catch(err => console.error('Error occurred:', err));
+    }
+
+    // const onHandSelect = () => {
+    //     parent.postMessage({pluginMessage: {type: 'addHand', url: path}}, '*');
+    //     Props.nextStep();
+    // };
 
     return (
         <>
