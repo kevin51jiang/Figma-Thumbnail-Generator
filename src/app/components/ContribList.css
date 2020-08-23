@@ -1,0 +1,15 @@
+.contrib-list {
+    margin: 0 2rem;
+}
+
+.contrib-list .team-select ul {
+    padding-left: 1rem;
+    border: 1px solid lightgray;
+    list-style: none;
+    overflow-y: auto;
+    max-height: 150px;
+}
+
+.contrib-list .team-select li {
+    text-align: left;
+}
