@@ -9,7 +9,7 @@ let selection1: SceneNode;
 let selection2: SceneNode;
 
 let bgHex = '#CFE2E3';
-let customHand = '../assets/handz/Black/Basic/Black-in-Basic1.png`';
+let customHand = new Uint8Array();
 
 // Calls to "parent.postMessage" from within the HTML page will trigger this
 // callback. The callback will be passed the "pluginMessage" property of the
@@ -27,11 +27,12 @@ figma.ui.onmessage = msg => {
     }
 
     if (msg.type === 'addHand') {
-        customHand = msg.url;
+        customHand = msg.image;
     }
 
     if (msg.type === 'finish') {
         createPageAndFrame();
+        addCustomHand(customHand);
         insertFirstMockup();
         insertSecondMockup();
         figma.closePlugin();
@@ -157,6 +158,26 @@ function insertSecondMockup() {
     second_mockup_t.x = 267.93;
     second_mockup_t.y = 45.71;
     frame.appendChild(second_mockup_t);
+}
+
+function addCustomHand(customHand) {
+    let img = figma.createImage(customHand);
+    const rect = figma.createRectangle();
+    rect.resize(150, 150);
+    rect.x = 328;
+    rect.y = 109;
+    rect.fills = [
+        {
+            blendMode: 'NORMAL',
+            imageHash: img.hash,
+            opacity: 1,
+            scaleMode: 'FILL',
+            scalingFactor: 1.0,
+            type: 'IMAGE',
+            visible: true,
+        },
+    ];
+    frame.appendChild(rect);
 }
 
 function hexToRgb(hex) {
