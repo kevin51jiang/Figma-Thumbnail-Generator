@@ -10,6 +10,15 @@ let selection2: SceneNode;
 
 let bgHex = '#CFE2E3';
 let customHand = new Uint8Array();
+let collabHands = [];
+
+let spots = [
+    [162, -27],
+    [162, 405],
+    [162, 5],
+    [162, 368],
+    [162, 37],
+];
 
 // Calls to "parent.postMessage" from within the HTML page will trigger this
 // callback. The callback will be passed the "pluginMessage" property of the
@@ -27,12 +36,17 @@ figma.ui.onmessage = msg => {
     }
 
     if (msg.type === 'addHand') {
-        customHand = msg.image;
+        if (msg.isUser) {
+            customHand = msg.image;
+        } else {
+            collabHands.push(msg.image);
+        }
     }
 
     if (msg.type === 'finish') {
         createPageAndFrame();
         addCustomHand(customHand);
+        collabHands.map((collabHand, ind) => addCollabHand(collabHand, ind));
         insertFirstMockup();
         insertSecondMockup();
         figma.closePlugin();
@@ -160,12 +174,32 @@ function insertSecondMockup() {
     frame.appendChild(second_mockup_t);
 }
 
+async function addCollabHand(handImg, ind: number) {
+    let img = figma.createImage(handImg);
+    const rect = figma.createRectangle();
+    const spot = spots[ind];
+
+    rect.x = spot[1];
+    rect.y = spot[0];
+    rect.fills = [
+        {
+            blendMode: 'NORMAL',
+            imageHash: img.hash,
+            opacity: 1,
+            scaleMode: 'FILL',
+            scalingFactor: 1.0,
+            type: 'IMAGE',
+            visible: true,
+        },
+    ];
+    frame.appendChild(rect);
+}
+
 function addCustomHand(customHand) {
     let img = figma.createImage(customHand);
     const rect = figma.createRectangle();
-    rect.resize(150, 150);
     rect.x = 328;
-    rect.y = 109;
+    rect.y = 162;
     rect.fills = [
         {
             blendMode: 'NORMAL',
