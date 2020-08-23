@@ -45,6 +45,7 @@ const AddHand: React.SFC<AddHandProps> = (Props: AddHandProps) => {
 
     return (
         <>
+            <h2>Customize your hand</h2>
             {/* Color */}
             <Select value={color} style={{width: '10rem'}} onChange={val => setColor(val)} optionLabelProp="label">
                 {colorOptions.map(colorOpt =>
