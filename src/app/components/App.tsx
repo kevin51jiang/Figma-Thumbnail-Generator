@@ -12,6 +12,7 @@ export interface AppProps {}
 
 const App: React.SFC<AppProps> = () => {
     const [step, setStep] = React.useState(1);
+    const [sessionEntries, setSessionEntries] = React.useState([]);
 
     const nextStep = () => setStep(step + 1);
 
@@ -19,8 +20,17 @@ const App: React.SFC<AppProps> = () => {
         <div>
             {/* <h1>Step {step}</h1> */}
             {step == 1 && <SelectFrames nextStep={nextStep} />}
-            {step == 2 && <ContribList nextStep={nextStep} skip2Steps={() => setStep(step + 2)} />}
-            {step == 3 && <AddHand nextStep={nextStep} prevStep={() => setStep(step - 1)} />}
+            {step == 2 && (
+                <ContribList nextStep={nextStep} skip2Steps={() => setStep(step + 2)} sessionEntries={sessionEntries} />
+            )}
+            {step == 3 && (
+                <AddHand
+                    nextStep={nextStep}
+                    prevStep={() => setStep(step - 1)}
+                    sessionEntries={sessionEntries}
+                    setSessionEntries={setSessionEntries}
+                />
+            )}
             {step == 4 && <BgSelect />}
         </div>
     );

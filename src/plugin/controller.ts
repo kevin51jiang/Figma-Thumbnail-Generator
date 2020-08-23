@@ -11,15 +11,15 @@ let selection2: SceneNode;
 let frameSelection: BaseNode;
 
 let bgHex = '#CFE2E3';
-let customHand = null;
 let collabHands = [];
 
 let spots = [
+    [162, 38],
+    [162, 328],
+    [162, 359],
+    [162, 12],
     [162, -13],
     [162, 396],
-    [162, 12],
-    [162, 359],
-    [162, 38],
 ];
 
 // Calls to "parent.postMessage" from within the HTML page will trigger this
@@ -34,11 +34,7 @@ figma.ui.onmessage = msg => {
     }
 
     if (msg.type === 'addHand') {
-        if (msg.isUser) {
-            customHand = msg.image;
-        } else {
-            collabHands.push(msg.image);
-        }
+        collabHands.push(msg.image);
     }
 
     if (msg.type === 'setBgAndFinish') {
@@ -46,9 +42,6 @@ figma.ui.onmessage = msg => {
         createPageAndFrame();
         insertFirstMockup();
         insertSecondMockup();
-        if (customHand) {
-            addCustomHand(customHand);
-        }
 
         if (collabHands) {
             collabHands.map((collabHand, ind) => addCollabHand(collabHand, ind));
@@ -177,7 +170,7 @@ async function addCollabHand(handImg, ind: number) {
     const spot = spots[ind];
 
     rect.x = spot[1];
-    rect.y = spot[0];
+    rect.y = spot[0] + Math.floor(Math.random() * 30) - 5;
     rect.fills = [
         {
             blendMode: 'NORMAL',
@@ -192,24 +185,24 @@ async function addCollabHand(handImg, ind: number) {
     frame.appendChild(rect);
 }
 
-function addCustomHand(customHand) {
-    let img = figma.createImage(customHand);
-    const rect = figma.createRectangle();
-    rect.x = 328;
-    rect.y = 162;
-    rect.fills = [
-        {
-            blendMode: 'NORMAL',
-            imageHash: img.hash,
-            opacity: 1,
-            scaleMode: 'FILL',
-            scalingFactor: 1.0,
-            type: 'IMAGE',
-            visible: true,
-        },
-    ];
-    frame.appendChild(rect);
-}
+// function addCustomHand(customHand) {
+//     let img = figma.createImage(customHand);
+//     const rect = figma.createRectangle();
+//     rect.x = 328;
+//     rect.y = 162;
+//     rect.fills = [
+//         {
+//             blendMode: 'NORMAL',
+//             imageHash: img.hash,
+//             opacity: 1,
+//             scaleMode: 'FILL',
+//             scalingFactor: 1.0,
+//             type: 'IMAGE',
+//             visible: true,
+//         },
+//     ];
+//     frame.appendChild(rect);
+// }
 
 function hexToRgb(hex) {
     var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
