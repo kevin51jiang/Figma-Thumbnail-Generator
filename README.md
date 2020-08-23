@@ -1,3 +1,5 @@
+![banner](banner.png)
+
 # [thumb](https://www.figma.com/community/plugin/879412500982971840/thumb---thumbnails-for-your-team) – a figma plugin making thumbnails for your team
 Thumb is a plugin that helps teams organize their Figma files and highlight their collaborative effort in a personalized and creative way. Our plugin follows 5 simple steps: 
 
@@ -15,8 +17,9 @@ Created by: [Aaron Jiang](aaronjiang0.me), [Jayden Hsiao](jaydenhsiao.me), [Emil
 
 ## Quickstart
 * Clone the repo
-* Run `npm install` to install dependencies
-* Run `npx webpack` to start webpack in watch mode
+* Run `yarn` to install dependencies
+* Run `yarn build` to build distributable files in production mode
+* Run `yarn build:watch` to start webpack in watch mode
 * Open `Figma` -> `Plugins` -> `Development` -> `New Plugin...` and choose `manifest.json` file from this repo
 
 ## Editing the plugin 
