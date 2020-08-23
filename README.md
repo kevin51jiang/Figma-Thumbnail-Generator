@@ -24,5 +24,5 @@ This repo uses:
 * React + Webpack
 * TypeScript
 * Prettier precommit hook
-* [Figma Plugin React Template] (https://github.com/nirsky/figma-plugin-react-template) by nirsky
-* [Ant UI] (https://ant.design)
+* [Figma Plugin React Template](https://github.com/nirsky/figma-plugin-react-template) by nirsky
+* [Ant UI](https://ant.design)
