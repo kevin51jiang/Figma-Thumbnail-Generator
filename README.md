@@ -1,4 +1,4 @@
-# Figma Thumbnail Generator Plugin
+# [thumb](https://www.figma.com/community/plugin/879412500982971840/thumb---thumbnails-for-your-team) – a figma plugin making thumbnails for your team
 Thumb is a plugin that helps teams organize their Figma files and highlight their collaborative effort in a personalized and creative way. Our plugin follows 5 simple steps: 
 
 1. Select the artboards that you want to be displayed in the thumbnail
@@ -8,6 +8,8 @@ Thumb is a plugin that helps teams organize their Figma files and highlight thei
 5. Generate your new thumbnail!
 
 By giving teams the ability to highlight artboards of their choice and showcase each project as a culmination of the hard work of multiple team members using 3D hands, thumb creates a more inclusive and organized workflow so that teams can take pride and ownership in their work. Through fostering personal connections between the work and team members, thumb leads to higher quality work and an unmatched sense of collaboration. 
+
+Install the plugin [here](https://www.figma.com/community/plugin/879412500982971840/thumb---thumbnails-for-your-team).
 
 Created by: [Aaron Jiang](aaronjiang0.me), [Jayden Hsiao](jaydenhsiao.me), [Emily Louie](emily.louie.ca), [Kevin Jiang](kevinjiang.ca), and [Leon Han](https://leon-han19.github.io)
 
