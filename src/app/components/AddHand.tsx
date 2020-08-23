@@ -1,6 +1,7 @@
 import * as React from 'react';
 import '../styles/ui.css';
 import {Select} from 'antd';
+import {addHand} from './utils';
 
 const {Option} = Select;
 
@@ -34,27 +35,16 @@ const AddHand: React.SFC<AddHandProps> = (Props: AddHandProps) => {
         setPath(`https://emily.louie.ca/handz/${color}-in-${clothes}${pose}.png`);
     }, [color, clothes, pose]);
 
-    function sendData(data) {
-        parent.postMessage({pluginMessage: {type: 'addHand', image: data}}, '*');
+    function sendData() {
+        addHand(color, clothes, pose, true);
+        addHand('Black', 'Jacket', '3', false);
+        addHand('White', 'Basic', '1', false);
+        addHand('Black', 'Jacket', '3', false);
+        addHand('Green', 'Basic', '1', false);
+        addHand('Purple', 'Jacket', '3', false);
+
         Props.nextStep();
     }
-
-    function onHandSelect() {
-        // let path = "https://scripter.rsms.me/icon.png";
-        fetch(path)
-            .then(r => {
-                if ((r.status + '')[0] != '2') throw Error(`HTTP ${r.status} ${r.statusText}`);
-                return r.arrayBuffer();
-                //@ts-ignore
-            })
-            .then(a => sendData(new Uint8Array(a)), '*')
-            .catch(err => console.error('Error occurred:', err));
-    }
-
-    // const onHandSelect = () => {
-    //     parent.postMessage({pluginMessage: {type: 'addHand', url: path}}, '*');
-    //     Props.nextStep();
-    // };
 
     return (
         <>
@@ -113,7 +103,7 @@ const AddHand: React.SFC<AddHandProps> = (Props: AddHandProps) => {
             <div>
                 {path === '' ? <img src={'https://emily.louie.ca/handz/Black-in-Basic1.png'} /> : <img src={path} />}
             </div>
-            <button onClick={onHandSelect}>Select thumb</button>
+            <button onClick={sendData}>Select thumb</button>
         </>
     );
 };
