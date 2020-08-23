@@ -29,7 +29,7 @@ const ContribList: React.SFC<ContribListProps> = (Props: ContribListProps) => {
                 <a onClick={Props.nextStep}>+ New</a>
             </div>
 
-            <button onClick={Props.skip2Steps} style={{float: 'right'}}>
+            <button onClick={Props.skip2Steps} style={{position: 'absolute', bottom: '2rem', right: '2rem'}}>
                 Next
             </button>
         </div>
