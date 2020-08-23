@@ -37,12 +37,6 @@ const AddHand: React.SFC<AddHandProps> = (Props: AddHandProps) => {
 
     function sendData() {
         addHand(color, clothes, pose, true);
-        addHand('Black', 'Jacket', '3', false);
-        addHand('White', 'Basic', '1', false);
-        addHand('Black', 'Jacket', '3', false);
-        addHand('Green', 'Basic', '1', false);
-        addHand('Purple', 'Jacket', '3', false);
-
         Props.nextStep();
     }
 

@@ -1,4 +1,5 @@
 export const addHand = (color, clothes, pose, isUser = false) => {
+    console.log('adding new hand', color, clothes, pose, isUser);
     fetch(`https://emily.louie.ca/handz/${color}-in-${clothes}${pose}.png`)
         .then(r => {
             if ((r.status + '')[0] != '2') throw Error(`HTTP ${r.status} ${r.statusText}`);

@@ -3,6 +3,7 @@ import * as React from 'react';
 import people from './people.json';
 import './ContribList.css';
 import {Checkbox} from 'antd';
+import {addHand} from './utils';
 
 export interface ContribListProps {
     nextStep: () => void;
@@ -21,7 +22,7 @@ const ContribList: React.SFC<ContribListProps> = (Props: ContribListProps) => {
             2: {name: "Jayden Hsiao", color: "Dark-white", clothes: "Basic", pose: "4"}
             3: {name: "Kevin Jiang", color: "Green", clothes: "Jacket", pose: "5"}
          */
-        parent.postMessage({pluginMessage: {type: 'setCollaborators', collaborators: selected}}, '*');
+        selected.forEach(person => addHand(person.color, person.clothes, person.pose));
         Props.skip2Steps();
     };
 
@@ -30,7 +31,7 @@ const ContribList: React.SFC<ContribListProps> = (Props: ContribListProps) => {
             <h2>Choose your collaborators</h2>
             {console.log(selected)}
             <div className="team-select">
-                <Checkbox.Group onChange={newVal => setSelected(newVal)}>
+                <Checkbox.Group style={{width: '100%'}} onChange={newVal => setSelected(newVal)}>
                     <ul>
                         {Object.keys(people).map(person => (
                             <>

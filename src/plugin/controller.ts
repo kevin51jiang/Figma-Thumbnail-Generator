@@ -40,6 +40,7 @@ figma.ui.onmessage = msg => {
             customHand = msg.image;
         } else {
             collabHands.push(msg.image);
+            console.log('pushing', msg);
         }
     }
 
@@ -47,7 +48,9 @@ figma.ui.onmessage = msg => {
         createPageAndFrame();
         insertFirstMockup();
         insertSecondMockup();
-        addCustomHand(customHand);
+        if (customHand) {
+            addCustomHand(customHand);
+        }
         collabHands.map((collabHand, ind) => addCollabHand(collabHand, ind));
         figma.closePlugin();
     }
