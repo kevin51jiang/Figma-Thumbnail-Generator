@@ -7,7 +7,7 @@
     border: 1px solid lightgray;
     list-style: none;
     overflow-y: auto;
-    max-height: 150px;
+    max-height: 125px;
 }
 
 .contrib-list .team-select li {
