@@ -9,6 +9,7 @@ import AddHand from './AddHand';
 import 'antd/dist/antd.css';
 import ContribList from './ContribList';
 
+
 export interface AppProps {}
 
 const App: React.SFC<AppProps> = () => {

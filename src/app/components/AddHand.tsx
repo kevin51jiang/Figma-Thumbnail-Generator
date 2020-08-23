@@ -1,9 +1,28 @@
 import * as React from 'react';
 import '../styles/ui.css';
+import {Select} from 'antd';
+
+const {Option} = Select;
 
 export interface AddHandProps {
     nextStep: () => void;
 }
+
+const colorOptions = [
+    'Black',
+    'Blue',
+    'Brown',
+    ['Dark White', 'Dark-white'],
+    'Green',
+    ['Light Brown', 'Light-brown'],
+    'Purple',
+    'White',
+    'Yellow',
+];
+
+const clothesOptions = ['Basic', 'Jacket', 'Jumper'];
+
+const poseOptions = ['Fingers Crossed', 'Number One', 'High Five', 'Vulcan Salute', 'Wave', 'Okay', 'Rock On', 'Fist'];
 
 const AddHand: React.SFC<AddHandProps> = (Props: AddHandProps) => {
     const [color, setColor] = React.useState<string>('Black');
@@ -15,18 +34,6 @@ const AddHand: React.SFC<AddHandProps> = (Props: AddHandProps) => {
         setPath(`https://emily.louie.ca/handz/${color}-in-${clothes}${pose}.png`);
     }, [color, clothes, pose]);
 
-    const handleColorChange = e => {
-        setColor(e.target.value);
-    };
-
-    const handleClothesChange = e => {
-        setClothes(e.target.value);
-    };
-
-    const handlePoseChange = e => {
-        setPose(e.target.value);
-    };
-
     const onHandSelect = () => {
         parent.postMessage({pluginMessage: {type: 'addHand', url: path}}, '*');
         Props.nextStep();
@@ -34,35 +41,62 @@ const AddHand: React.SFC<AddHandProps> = (Props: AddHandProps) => {
 
     return (
         <>
-            <select className="select-menu" onChange={e => handleColorChange(e)}>
-                <option value="Black">Black</option>
-                <option value="Blue">Blue</option>
-                <option value="Brown">Brown</option>
-                <option value="Dark-white">Dark White</option>
-                <option value="Green">Green</option>
-                <option value="Light-Brown">Light Brown</option>
-                <option value="Purple">Purple</option>
-                <option value="White">White</option>
-                <option value="Yellow">Yellow</option>
-            </select>
-            <select className="select-menu" onChange={e => handleClothesChange(e)}>
-                <option value="Basic">Basic</option>
-                <option value="Jacket">Jacket</option>
-                <option value="Jumper">Jumper</option>
-            </select>
-            <select className="select-menu" onChange={e => handlePoseChange(e)}>
-                <option value="1">Fingers Crossed</option>
-                <option value="2">Number One</option>
-                <option value="3">High Five</option>
-                <option value="4">Vulcan Salute</option>
-                <option value="5">Wave</option>
-                <option value="6">Okay</option>
-                <option value="7">Rock On</option>
-                <option value="8">Fist</option>
-            </select>
-            {/* <img src={require(path)} /> */}
-            {path === '' ? <img src={'https://emily.louie.ca/handz/Black-in-Basic1.png'} /> : <img src={path} />}
-            <button onClick={onHandSelect}>Select a Colour</button>
+            {/* Color */}
+            <Select value={color} style={{width: '10rem'}} onChange={val => setColor(val)} optionLabelProp="label">
+                {colorOptions.map(colorOpt =>
+                    typeof colorOpt === 'string' ? (
+                        <Option value={colorOpt} label={colorOpt} key={`color-${colorOpt}`}>
+                            <div style={{textAlign: 'left'}}>
+                                <span style={{width: '1rem', display: 'inline-block'}} role="img">
+                                    {color === colorOpt ? '✓ ' : ' '}
+                                </span>
+                                {colorOpt}
+                            </div>
+                        </Option>
+                    ) : (
+                        <Option value={colorOpt[1]} label={colorOpt[0]} key={`color-${colorOpt[1]}`}>
+                            <div style={{textAlign: 'left'}}>
+                                <span style={{width: '1rem', display: 'inline-block'}} role="img">
+                                    {color === colorOpt[1] ? '✓ ' : ' '}
+                                </span>
+                                {colorOpt[0]}
+                            </div>
+                        </Option>
+                    )
+                )}
+            </Select>
+
+            {/* Clothes */}
+            <Select value={clothes} style={{width: '120px'}} onChange={val => setClothes(val)} optionLabelProp="label">
+                {clothesOptions.map(clothOpt => (
+                    <Option value={clothOpt} label={clothOpt} key={`cloth-${clothOpt}`}>
+                        <div style={{textAlign: 'left'}}>
+                            <span style={{width: '1rem', display: 'inline-block'}} role="img">
+                                {clothes === clothOpt ? '✓ ' : ' '}
+                            </span>
+                            {clothOpt}
+                        </div>
+                    </Option>
+                ))}
+            </Select>
+
+            {/* Pose */}
+            <Select value={pose} style={{width: '150px'}} onChange={val => setPose(val)} optionLabelProp="label">
+                {poseOptions.map((poseOpt, index) => (
+                    <Option value={index + 1} label={poseOpt} key={`pose-${index}`}>
+                        <div style={{textAlign: 'left'}}>
+                            <span style={{width: '1rem', display: 'inline-block'}} role="img">
+                                {pose === poseOpt ? '✓ ' : ' '}
+                            </span>
+                            {poseOptions[index]}
+                        </div>
+                    </Option>
+                ))}
+            </Select>
+            <div>
+                {path === '' ? <img src={'https://emily.louie.ca/handz/Black-in-Basic1.png'} /> : <img src={path} />}
+            </div>
+            <button onClick={onHandSelect}>Select thumb</button>
         </>
     );
 };
