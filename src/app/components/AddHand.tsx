@@ -9,6 +9,8 @@ export interface AddHandProps {
     nextStep: () => void;
 }
 
+// all strings are values,
+// if it's an array, the left is the label, the right is the value
 const colorOptions = [
     'Black',
     'Blue',
@@ -27,22 +29,16 @@ const poseOptions = ['Fingers Crossed', 'Number One', 'High Five', 'Vulcan Salut
 
 const AddHand: React.SFC<AddHandProps> = (Props: AddHandProps) => {
     const [color, setColor] = React.useState<string>('Black');
-    const [clothes, setClothes] = React.useState<string>('Basic');
-    const [pose, setPose] = React.useState<string>('1');
+    const [clothes, setClothes] = React.useState<string>(clothesOptions[0]);
+    const [pose, setPose] = React.useState<string>(poseOptions[0]);
     const [path, setPath] = React.useState<string>('');
 
     React.useEffect(() => {
-        setPath(`https://emily.louie.ca/handz/${color}-in-${clothes}${pose}.png`);
+        setPath(`https://emily.louie.ca/handz/${color}-in-${clothes}${poseOptions.indexOf(pose) + 1}.png`);
     }, [color, clothes, pose]);
 
     function sendData() {
-        addHand(color, clothes, pose, true);
-        addHand('Black', 'Jacket', '3', false);
-        addHand('White', 'Basic', '1', false);
-        addHand('Black', 'Jacket', '3', false);
-        addHand('Green', 'Basic', '1', false);
-        addHand('Purple', 'Jacket', '3', false);
-
+        addHand(color, clothes, poseOptions.indexOf(pose) + 1, true);
         Props.nextStep();
     }
 
@@ -88,9 +84,15 @@ const AddHand: React.SFC<AddHandProps> = (Props: AddHandProps) => {
             </Select>
 
             {/* Pose */}
-            <Select value={pose} style={{width: '150px'}} onChange={val => setPose(val)} optionLabelProp="label">
+            <Select
+                value={pose}
+                style={{width: '150px'}}
+                onChange={val => setPose(val)}
+                optionLabelProp="label"
+                defaultValue={poseOptions[0]}
+            >
                 {poseOptions.map((poseOpt, index) => (
-                    <Option value={index + 1} label={poseOpt} key={`pose-${index}`}>
+                    <Option value={poseOpt} label={poseOpt} key={`pose-${index}`}>
                         <div style={{textAlign: 'left'}}>
                             <span style={{width: '1rem', display: 'inline-block'}} role="img">
                                 {pose === poseOpt ? '✓ ' : ' '}

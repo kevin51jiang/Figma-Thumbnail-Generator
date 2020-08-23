@@ -3,6 +3,7 @@ import * as React from 'react';
 import people from './people.json';
 import './ContribList.css';
 import {Checkbox} from 'antd';
+import {addHand} from './utils';
 
 export interface ContribListProps {
     nextStep: () => void;
@@ -12,7 +13,7 @@ export interface ContribListProps {
 const ContribList: React.SFC<ContribListProps> = (Props: ContribListProps) => {
     const [selected, setSelected] = React.useState([]);
 
-    const onSubmit = () => {
+    const addSelectedCollaborators = () => {
         /**
          * Posts array like this
          * 
@@ -21,16 +22,14 @@ const ContribList: React.SFC<ContribListProps> = (Props: ContribListProps) => {
             2: {name: "Jayden Hsiao", color: "Dark-white", clothes: "Basic", pose: "4"}
             3: {name: "Kevin Jiang", color: "Green", clothes: "Jacket", pose: "5"}
          */
-        parent.postMessage({pluginMessage: {type: 'setCollaborators', collaborators: selected}}, '*');
-        Props.skip2Steps();
+        selected.map(person => addHand(person.color, person.clothes, person.pose));
     };
 
     return (
         <div className="contrib-list">
             <h2>Choose your collaborators</h2>
-            {console.log(selected)}
             <div className="team-select">
-                <Checkbox.Group onChange={newVal => setSelected(newVal)}>
+                <Checkbox.Group style={{width: '100%'}} onChange={newVal => setSelected(newVal)}>
                     <ul>
                         {Object.keys(people).map(person => (
                             <>
@@ -43,10 +42,23 @@ const ContribList: React.SFC<ContribListProps> = (Props: ContribListProps) => {
                 </Checkbox.Group>
             </div>
             <div style={{float: 'left'}}>
-                <a onClick={Props.nextStep}>+ New</a>
+                <a
+                    onClick={() => {
+                        addSelectedCollaborators();
+                        Props.nextStep();
+                    }}
+                >
+                    + New
+                </a>
             </div>
 
-            <button onClick={onSubmit} style={{position: 'absolute', bottom: '2rem', right: '2rem'}}>
+            <button
+                onClick={() => {
+                    addSelectedCollaborators();
+                    Props.skip2Steps();
+                }}
+                style={{position: 'absolute', bottom: '2rem', right: '2rem'}}
+            >
                 Next
             </button>
         </div>

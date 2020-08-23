@@ -9,7 +9,7 @@ let selection1: SceneNode;
 let selection2: SceneNode;
 
 let bgHex = '#CFE2E3';
-let customHand = new Uint8Array();
+let customHand = null;
 let collabHands = [];
 
 let spots = [
@@ -47,8 +47,13 @@ figma.ui.onmessage = msg => {
         createPageAndFrame();
         insertFirstMockup();
         insertSecondMockup();
-        addCustomHand(customHand);
-        collabHands.map((collabHand, ind) => addCollabHand(collabHand, ind));
+        if (customHand) {
+            addCustomHand(customHand);
+        }
+
+        if (collabHands) {
+            collabHands.map((collabHand, ind) => addCollabHand(collabHand, ind));
+        }
         figma.closePlugin();
     }
 };
