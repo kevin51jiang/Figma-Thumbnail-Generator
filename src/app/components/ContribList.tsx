@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 import people from './people.json';
-import './ContribList.css';
+import '../styles/ContribList.css';
 import {Checkbox} from 'antd';
 import {addHand} from './utils';
 
@@ -16,7 +16,7 @@ const ContribList: React.SFC<ContribListProps> = (Props: ContribListProps) => {
     const addSelectedCollaborators = () => {
         /**
          * Posts array like this
-         * 
+         *
             0: {name: "Emily Louie", color: "Brown", clothes: "Jumper", pose: "3"}
             1: {name: "Leon Han", color: "Blue", clothes: "Jacket", pose: "2"}
             2: {name: "Jayden Hsiao", color: "Dark-white", clothes: "Basic", pose: "4"}
@@ -27,7 +27,7 @@ const ContribList: React.SFC<ContribListProps> = (Props: ContribListProps) => {
 
     return (
         <div className="contrib-list">
-            <h2>Choose your collaborators</h2>
+            <h2>Select your team members</h2>
             <div className="team-select">
                 <Checkbox.Group style={{width: '100%'}} onChange={newVal => setSelected(newVal)}>
                     <ul>
@@ -48,7 +48,7 @@ const ContribList: React.SFC<ContribListProps> = (Props: ContribListProps) => {
                         Props.nextStep();
                     }}
                 >
-                    + New
+                    + New Member
                 </a>
             </div>
 
@@ -59,7 +59,7 @@ const ContribList: React.SFC<ContribListProps> = (Props: ContribListProps) => {
                 }}
                 style={{position: 'absolute', bottom: '2rem', right: '2rem'}}
             >
-                Next
+                Confirm Selection
             </button>
         </div>
     );

@@ -3,12 +3,10 @@ import * as React from 'react';
 import '../styles/ui.css';
 import SelectFrames from './SelectFrames';
 import BgSelect from './BgSelect';
-import CreateThumbnail from './CreateThumbnail';
 import AddHand from './AddHand';
 
 import 'antd/dist/antd.css';
 import ContribList from './ContribList';
-
 
 export interface AppProps {}
 
@@ -19,12 +17,11 @@ const App: React.SFC<AppProps> = () => {
 
     return (
         <div>
-            <h1>Step {step}</h1>
+            {/* <h1>Step {step}</h1> */}
             {step == 1 && <SelectFrames nextStep={nextStep} />}
-            {step == 2 && <BgSelect nextStep={nextStep} />}
-            {step == 3 && <ContribList nextStep={nextStep} skip2Steps={() => setStep(step + 2)} />}
-            {step == 4 && <AddHand nextStep={nextStep} />}
-            {step == 5 && <CreateThumbnail />}
+            {step == 2 && <ContribList nextStep={nextStep} skip2Steps={() => setStep(step + 2)} />}
+            {step == 3 && <AddHand nextStep={nextStep} prevStep={() => setStep(step - 1)} />}
+            {step == 4 && <BgSelect />}
         </div>
     );
 };

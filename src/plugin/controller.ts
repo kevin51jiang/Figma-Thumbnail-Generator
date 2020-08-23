@@ -8,16 +8,18 @@ let frame: FrameNode;
 let selection1: SceneNode;
 let selection2: SceneNode;
 
+let frameSelection: BaseNode;
+
 let bgHex = '#CFE2E3';
 let customHand = null;
 let collabHands = [];
 
 let spots = [
-    [162, -27],
-    [162, 405],
-    [162, 5],
-    [162, 368],
-    [162, 37],
+    [162, -13],
+    [162, 396],
+    [162, 12],
+    [162, 359],
+    [162, 38],
 ];
 
 // Calls to "parent.postMessage" from within the HTML page will trigger this
@@ -31,10 +33,6 @@ figma.ui.onmessage = msg => {
         selection2 = figma.currentPage.selection[1];
     }
 
-    if (msg.type === 'setBg') {
-        bgHex = msg.color;
-    }
-
     if (msg.type === 'addHand') {
         if (msg.isUser) {
             customHand = msg.image;
@@ -43,7 +41,8 @@ figma.ui.onmessage = msg => {
         }
     }
 
-    if (msg.type === 'finish') {
+    if (msg.type === 'setBgAndFinish') {
+        bgHex = msg.color;
         createPageAndFrame();
         insertFirstMockup();
         insertSecondMockup();
@@ -93,18 +92,11 @@ function createPageAndFrame() {
             },
         },
     ];
-    //black border to show frame more clearly (for now)
-    frame.strokes = [
-        {
-            type: 'SOLID',
-            color: {
-                r: 0,
-                g: 0,
-                b: 0,
-            },
-        },
-    ];
-    // frame.strokeWeight = 1;
+
+    //zoom into frame
+    const nodes = [];
+    nodes.push(frame);
+    figma.viewport.scrollAndZoomIntoView(nodes);
 }
 
 function insertFirstMockup() {

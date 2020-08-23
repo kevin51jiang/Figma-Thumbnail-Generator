@@ -7,6 +7,7 @@ const {Option} = Select;
 
 export interface AddHandProps {
     nextStep: () => void;
+    prevStep: () => void;
 }
 
 // all strings are values,
@@ -105,7 +106,7 @@ const AddHand: React.SFC<AddHandProps> = (Props: AddHandProps) => {
             <div>
                 {path === '' ? <img src={'https://emily.louie.ca/handz/Black-in-Basic1.png'} /> : <img src={path} />}
             </div>
-            <button onClick={sendData}>Select thumb</button>
+            <button onClick={sendData}>Finish Personalization</button>
         </>
     );
 };
