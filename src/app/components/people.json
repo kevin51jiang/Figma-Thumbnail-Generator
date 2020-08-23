@@ -1,0 +1,32 @@
+{
+    "aaron": {
+        "name": "Aaron Jiang",
+        "color": "Black",
+        "clothes": "Basic",
+        "pose": "1"
+    },
+    "leon": {
+        "name": "Leon Han",
+        "color": "Blue",
+        "clothes": "Jacket",
+        "pose": "2"
+    },
+    "emily": {
+        "name": "Emily Louie",
+        "color": "Brown",
+        "clothes": "Jumper",
+        "pose": "3"
+    },
+    "jayden": {
+        "name": "Jayden Hsiao",
+        "color": "Dark-white",
+        "clothes": "Basic",
+        "pose": "4"
+    },
+    "kevin": {
+        "name": "Kevin Jiang",
+        "color": "Green",
+        "clothes": "Jacket",
+        "pose": "5"
+    }
+}
