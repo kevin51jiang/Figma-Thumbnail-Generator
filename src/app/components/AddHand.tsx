@@ -92,6 +92,7 @@ const AddHand: React.SFC<AddHandProps> = (Props: AddHandProps) => {
                 >
                     {clothesOptions.map(clothOpt => (
                         <Option value={clothOpt} label={clothOpt} key={`cloth-${clothOpt}`}>
+
                             <div style={{textAlign: 'left'}}>
                                 <span style={{width: '1rem', display: 'inline-block'}} role="img">
                                     {clothes === clothOpt ? '✓ ' : ' '}

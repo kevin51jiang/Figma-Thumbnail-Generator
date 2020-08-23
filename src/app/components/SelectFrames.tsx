@@ -12,7 +12,7 @@ const SelectFrames: React.SFC<SelectFramesProps> = (Props: SelectFramesProps) =>
 
     return (
         <>
-            <h2>Select Two Frames</h2>
+            <h2>Select two frames</h2>
             <button onClick={createThumbnail}>Confirm Selection</button>
         </>
     );
