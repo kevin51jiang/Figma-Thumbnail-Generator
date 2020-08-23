@@ -45,10 +45,10 @@ figma.ui.onmessage = msg => {
 
     if (msg.type === 'finish') {
         createPageAndFrame();
-        addCustomHand(customHand);
-        collabHands.map((collabHand, ind) => addCollabHand(collabHand, ind));
         insertFirstMockup();
         insertSecondMockup();
+        addCustomHand(customHand);
+        collabHands.map((collabHand, ind) => addCollabHand(collabHand, ind));
         figma.closePlugin();
     }
 };
