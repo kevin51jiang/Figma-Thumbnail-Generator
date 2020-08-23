@@ -92,7 +92,6 @@ const AddHand: React.SFC<AddHandProps> = (Props: AddHandProps) => {
                 >
                     {clothesOptions.map(clothOpt => (
                         <Option value={clothOpt} label={clothOpt} key={`cloth-${clothOpt}`}>
-
                             <div style={{textAlign: 'left'}}>
                                 <span style={{width: '1rem', display: 'inline-block'}} role="img">
                                     {clothes === clothOpt ? '✓ ' : ' '}
@@ -111,16 +110,19 @@ const AddHand: React.SFC<AddHandProps> = (Props: AddHandProps) => {
                     optionLabelProp="label"
                     defaultValue={poseOptions[0]}
                 >
-                    {poseOptions.map((poseOpt, index) => (
-                        <Option value={poseOpt} label={poseOpt} key={`pose-${index}`}>
-                            <div style={{textAlign: 'left'}}>
-                                <span style={{width: '1rem', display: 'inline-block'}} role="img">
-                                    {pose === poseOpt ? '✓ ' : ' '}
-                                </span>
-                                {poseOptions[index]}
-                            </div>
-                        </Option>
-                    ))}
+                    {poseOptions.map(
+                        (poseOpt, index) =>
+                            poseOpt !== 'Okay' && (
+                                <Option value={poseOpt} label={poseOpt} key={`pose-${index}`}>
+                                    <div style={{textAlign: 'left'}}>
+                                        <span style={{width: '1rem', display: 'inline-block'}} role="img">
+                                            {pose === poseOpt ? '✓ ' : ' '}
+                                        </span>
+                                        {poseOptions[index]}
+                                    </div>
+                                </Option>
+                            )
+                    )}
                 </Select>
             </div>
             <div>
